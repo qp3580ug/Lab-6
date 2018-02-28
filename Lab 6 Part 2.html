@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    .visited {
+      background-color: lightgray;
+      text-decoration: line-through;
+    };
+  </style>
+</head>
+
+<body>
+  <h1>Travel Wishlist</h1>
+
+  <h3>Click on a place to 'visit' it</h3>
+
+  <ul>
+    <li class="place">Rome</li>
+    <li class="place">Cairo</li>
+    <li class="place">New York</li>
+    <li class="place">Rio de Janeiro</li>
+  </ul>
+
+  <hr>
+
+  <P>You have visited <span id="total_visited">0</span> place(s)</P>
+  <P>You have <span id="total_not_visited">0</span> place(s) left to visit</P>
+
+
+  <script>
+    $(function(){
+
+      function visitedTracker(){
+        var totalVisited = $("li.visited").length
+        $('#total_visited').html(totalVisited)
+
+        var totalPlaces = $("li.place").length
+
+        var totalNotVisited = totalPlaces - totalVisited;
+        $('#total_not_visited').html(totalNotVisited)
+
+        if(totalNotVisited <= 0){
+          alert('You have visited all the places!!!')
+        }
+      };
+
+      visitedTracker()
+
+      $('.place').click(function(){
+        $(this).toggleClass('visited');
+        visitedTracker()
+      });
+    });
+
+  </script>
+
+</body>
+</html>
